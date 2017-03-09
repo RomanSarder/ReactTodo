@@ -1,7 +1,7 @@
 const React = require('react');
 
 const AddTodo = React.createClass({
-    onSubmit: function(e) {
+    handleSubmit: function(e) {
         e.preventDefault();
         let todoText = this.refs.newtodo.value;
 
@@ -13,9 +13,9 @@ const AddTodo = React.createClass({
     render: function() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    <input type="text" ref="newtodo" placeholder="Enter new todo's text"/>
-                    <button className="button hollow">Add todo</button>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" ref="newtodo" placeholder="What do you need to do"/>
+                    <button className="button hollow expanded">Add todo</button>
                 </form>
             </div>
         );
