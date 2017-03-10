@@ -41,4 +41,29 @@ describe('TodoApi', () => {
 
         });
     });
+    describe('filterTodos', () => {
+        let todos = [{
+            id: 1,
+            text: 'todo1',
+            completed: true
+        }, 
+        {
+            id: 2,
+            text: 'todo2',
+            completed: false
+        },
+        {
+            id: 3,
+            text: 'todo3',
+            completed: true
+        }];
+        it('should return all items if showComplete true', () => {
+            let filteredTodos = TodoApi.filterTodos(todos, true, "");
+            expect(filteredTodos.length).toBe(3);
+        });
+        it('should return only uncompleted items if showComplete false', () => {
+            let filteredTodos = TodoApi.filterTodos(todos, false, "");
+            expect(filteredTodos.length).toBe(1);
+        });
+    });
 });
