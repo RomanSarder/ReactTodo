@@ -1,6 +1,6 @@
 const React = require('react');
 const moment = require('moment');
-const Todo= React.createClass({
+const Todo = React.createClass({
     handleClick: function() {
         this.props.onToggle(this.props.id);
     },
