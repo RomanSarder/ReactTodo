@@ -11,10 +11,6 @@ store.subscribe(() => {
 	console.log('new state', store.getState());
 });
 
-store.dispatch(actions.addTodo('Clean the yard'));
-store.dispatch(actions.setSearchText('yard'));
-store.dispatch(actions.toggleShowCompleted());
-
 //Load Foundation
 require('foundation-sites/dist/css/foundation.min.css');
 require('applicationStyles');
