@@ -40,6 +40,8 @@ export let todosReducer = (state = [], action) => {
                         completed: newCompleted,
                         completedAt: newCompletedAt
                     }
+                } else {
+                    return todo;
                 }
             });
         default: 
