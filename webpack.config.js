@@ -24,6 +24,7 @@ module.exports = {
             __dirname, 'node_modules', './app/components', './app/api'
         ],
         alias: {
+            configureStore: 'app/store/configureStore.jsx',
             reducers: 'app/reducers/reducers.jsx',
             actions: 'app/actions/actions.jsx',
             applicationStyles: 'app/styles/app.scss'
