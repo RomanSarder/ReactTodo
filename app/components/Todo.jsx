@@ -6,7 +6,7 @@ const actions = require('actions');
 export const Todo = React.createClass({
     handleClick: function() {
         // this.props.onToggle(this.props.id);
-        this.props.dispatch(actions.toggleTodo(this.props.id));
+        this.props.dispatch(actions.startToggleTodo(this.props.id, !this.props.completed));
 
     },
     render: function() {
