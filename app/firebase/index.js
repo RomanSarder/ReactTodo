@@ -8,7 +8,6 @@ try {
         storageBucket: process.env.STORAGE_BUCKET,
         messagingSenderId: "651612257865"
     };
-    console.log(config);
     firebase.initializeApp(config);
 } catch (e) {
     console.log(e);
