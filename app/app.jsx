@@ -7,15 +7,17 @@ const actions = require('actions');
 const store = require('configureStore').configure();
 const TodoApi = require('TodoApi');
 
-store.subscribe(() => {
-	let state = store.getState();
-	console.log('new state', state);
-	TodoApi.setTodos(state.todos);
-});
+// store.subscribe(() => {
+// 	let state = store.getState();
+// 	console.log('new state', state);
+// 	TodoApi.setTodos(state.todos);
+// });
 
-let initialTodos = TodoApi.getTodos();
-console.log(initialTodos);
-store.dispatch(actions.addTodos(initialTodos));
+// let initialTodos = TodoApi.getTodos();
+// console.log(initialTodos);
+// store.dispatch(actions.addTodos(initialTodos));
+
+store.dispatch(actions.startAddTodos());
 
 //Load Foundation
 require('foundation-sites/dist/css/foundation.min.css');

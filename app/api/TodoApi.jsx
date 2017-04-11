@@ -1,22 +1,5 @@
 
 module.exports = {
-    setTodos: function(todos) {
-        if(Array.isArray(todos)) {
-            localStorage.setItem('todos', JSON.stringify(todos));
-            return todos;
-        }
-    },
-    getTodos: function() {
-        let stringTodos = localStorage.getItem('todos');
-        let todos = [];
-        try {
-            todos = JSON.parse(stringTodos);
-        } catch (e) {
-            console.log(e);
-        }
-
-        return Array.isArray(todos) ? todos : [];
-    },
     filterTodos: function(todos, showCompleted, searchText) {
         let filteredTodos = todos;
         filteredTodos = filteredTodos.filter((todo) => {
@@ -32,8 +15,10 @@ module.exports = {
             }
         });
         filteredTodos = filteredTodos.filter((todo) => {
+            console.log(todo.text);
             let text = todo.text.toLowerCase();
-            return searchText.length === 0 || text.indexOf(searchText.toLowerCase()) > -1;
+            searchText = searchText ? searchText.toLowerCase() : searchText;
+            return searchText.length === 0 || text.indexOf(searchText) > -1;
         });
         
 
