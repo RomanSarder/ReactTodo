@@ -15,7 +15,6 @@ module.exports = {
             }
         });
         filteredTodos = filteredTodos.filter((todo) => {
-            console.log(todo.text);
             let text = todo.text.toLowerCase();
             searchText = searchText ? searchText.toLowerCase() : searchText;
             return searchText.length === 0 || text.indexOf(searchText) > -1;

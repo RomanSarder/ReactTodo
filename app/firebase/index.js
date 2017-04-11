@@ -1,14 +1,14 @@
 import firebase from 'firebase/firebase-browser';
-
 try {
     const config = {
-        apiKey: "AIzaSyDoV0uiLGGB4a3DHtmTpiSRmAKJa7VH_cw",
-        authDomain: "todoapp-353ab.firebaseapp.com",
-        databaseURL: "https://todoapp-353ab.firebaseio.com",
+        apiKey: process.env.API_KEY,
+        authDomain: process.env.AUTH_DOMAIN,
+        databaseURL: process.env.DATABASE_URL,
         projectId: "todoapp-353ab",
-        storageBucket: "todoapp-353ab.appspot.com",
+        storageBucket: process.env.STORAGE_BUCKET,
         messagingSenderId: "651612257865"
     };
+    console.log(config);
     firebase.initializeApp(config);
 } catch (e) {
     console.log(e);
