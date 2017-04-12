@@ -1,6 +1,6 @@
 const expect = require('expect');
 const df = require('deep-freeze-strict');
-const reducers = require('reducers');
+import * as reducers from 'reducers';
 
 describe('Reducers', () => {
     describe('searchTextReducer', () => {
@@ -74,6 +74,29 @@ describe('Reducers', () => {
             let res = reducers.todosReducer(df([]), df(action));
             expect(res.length).toEqual(1);
             expect(res[0]).toEqual(todos[0]);
+        });
+    });
+    describe('authReducer', () => {
+        it('should dispatch LOGIN action with uid', () => {
+            let action = {
+                type: 'LOGIN',
+                uid: 12345 
+            };
+            let res = reducers.authReducer(df({}), df(action));
+            expect(res).toEqual({
+                uid: action.uid
+            });
+
+        });
+        it('should dispatch LOGOUT action', () => {
+            let authData = {
+                uid: '123abc'
+            }
+            let action = {
+                type: 'LOGOUT',
+            };
+            let res = reducers.authReducer(df(authData), df(action));
+            expect(res).toEqual({});
         });
     });
 });
