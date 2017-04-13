@@ -1,5 +1,5 @@
-const expect = require('expect');
-const TodoApi = require('TodoApi');
+import expect from 'expect';
+import TodoApi from 'TodoApi';
 
 describe('TodoApi', () => {
     beforeEach(() => {

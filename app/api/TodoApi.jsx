@@ -1,6 +1,5 @@
-
-module.exports = {
-    filterTodos: function(todos, showCompleted, searchText) {
+let TodoApi = {
+    filterTodos(todos, showCompleted, searchText) {
         let filteredTodos = todos;
         filteredTodos = filteredTodos.filter((todo) => {
             return !todo.completed || showCompleted;
@@ -24,3 +23,5 @@ module.exports = {
         return filteredTodos;
     }
 }
+    
+    export default TodoApi;

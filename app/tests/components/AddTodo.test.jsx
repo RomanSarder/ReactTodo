@@ -1,9 +1,9 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const expect = require('expect');
-const $ = require('jquery');
-const TestUtils = require('react-addons-test-utils');
-const {AddTodo} = require('AddTodo');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import expect from 'expect';
+import $ from 'jquery';
+import TestUtils from 'react-addons-test-utils';
+import {AddTodo} from 'AddTodo';
 import * as actions from 'actions';
 
 describe('AddTodo', () => {

@@ -2,11 +2,11 @@ import React from 'react';
 import * as redux from 'react-redux';
 import * as actions from 'actions';
 
-export let Login = React.createClass({
+export class Login extends React.Component{
     onLogin() { 
         let {dispatch} = this.props;
         dispatch(actions.startLogin());
-    },
+    }
     render() {
         return (
             <div>
@@ -18,7 +18,7 @@ export let Login = React.createClass({
                             <p>
                                 Login with GitHub account below
                             </p>
-                            <button onClick={this.onLogin} className="button">Login with GitHub</button>
+                            <button onClick={this.onLogin.bind(this)} className="button">Login with GitHub</button>
                         </div>
 
                     </div>
@@ -26,6 +26,6 @@ export let Login = React.createClass({
             </div>
         );
     }
-});
+};
 
 export default redux.connect()(Login);

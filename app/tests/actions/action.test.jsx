@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import firebase, {firebaseRef} from 'app/firebase';
-const expect = require('expect');
+import expect from 'expect';
 import * as actions from 'actions';
 
 const createMockStore = configureMockStore([thunk]);
@@ -84,17 +84,21 @@ describe('Actions', () => {
             firebase.auth().signInAnonymously().then((user) => {
                 uid = user.uid;
                 todosRef = firebaseRef.child(`users/${uid}/todos`);
+
                 return todosRef.remove();
             }).then(() => {
                 testTodoRef = todosRef.push();
-                return testTodoRef.set({
-                text: 'Something',
-                completed: false,
-                createdAt: 2345});
 
-            }).then(() => done())
-              .catch(done);
+                return testTodoRef.set({
+                    text: 'Something to do',
+                    completed: false,
+                    createdAt: 23453453
+                });
+            })
+                .then(() => done())
+                .catch(done);
         });
+
         afterEach((done) => {
             todosRef.remove().then(() => done());
         });
@@ -112,7 +116,22 @@ describe('Actions', () => {
                 });
                 expect(mockActions[0].updates.completedAt).toExist();
                 done();
-            }, done);
+            }).catch(done);
+        });
+        it('should create todo and dispatch ADD_TODO', (done) => {
+            const store = createMockStore({ auth: { uid } });
+            const todoText = 'My todo item';
+
+            store.dispatch(actions.startAddTodo(todoText)).then(() => {
+                const actions = store.getActions();
+                expect(actions[0]).toInclude({
+                    type: 'ADD_TODO'
+                });
+                expect(actions[0].todo).toInclude({
+                    text: todoText
+                });
+                done();
+            }).catch(done);
         });
         it('should dispatch startAddTodos and add existing todo to mockstore', (done) => {
             const store = createMockStore({auth: {uid}});
@@ -123,27 +142,13 @@ describe('Actions', () => {
                     type: 'ADD_TODOS',
                 });
                 expect(mockActions[0].todos[0]).toInclude({
-                    text: 'Something',
+                    text: 'Something to do',
                     completed: false,
-                    createdAt: 2345
+                    createdAt: 23453453
                 });
                 expect(mockActions[0].todos.length).toEqual(1);
                 done();
-            }, done);
+            }).catch(done);
         });
-        it('should create todo and dispatch startAddTodo', (done) => {
-        const store = createMockStore({auth: {uid}});
-        const todoText = 'Test';
-        store.dispatch(actions.startAddTodo(todoText)).then(() => {
-            const actions = store.getActions();
-            expect(actions[0]).toInclude({
-                type: 'ADD_TODO'
-            });
-            expect(actions[0].todo).toInclude({
-                text: todoText
-            })
-            done();
-        }).catch(done);
-    });
     });
 });
